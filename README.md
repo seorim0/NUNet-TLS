@@ -1,6 +1,6 @@
 # **Monoaural Speech Enhancement Using a Nested U-Net with Two-Level Skip Connections**   
    
-This is a repo of the paper "Monoaural Speech Enhancement Using a Nested U-Net with Two-Level Skip Connections", which is submitted to INTERSPEECH2021.   
+This is a repo of the paper "Monoaural Speech Enhancement Using a Nested U-Net with Two-Level Skip Connections", which is submitted to INTERSPEECH2022.   
 
 Abstract：Capturing the contextual information in multi-scale is known to be beneficial for improving the performance of DNN-based speech enhancement (SE) models. This paper proposes a new SE model, called NUNet-TLS, having two-level skip connections between the residual U-Blocks nested in each layer of a large U-Net structure. The proposed model also has a causal time-frequency attention (CTFA) at the output of the residual U-Block to boost dynamic representation of the speech context in multi-scale. Even having the two-level skip connections, the proposed model slightly increases the network parameters, but the performance improvement is significant. Experimental results show that the proposed NUNet-TLS has superior performance in various objective evaluation metrics to other state-of-the-art models. The code of our model is available at https://github.com/seorim0/NUNet-TLS.   
 
@@ -42,7 +42,7 @@ clean_dirs_for_valid = '../Dataset/valid/clean/'
 
 
 ## Demo
-We randomly select one sample for demonstration.   
+We randomly select one sample for demonstration at 10 dB SNR.   
    
 https://user-images.githubusercontent.com/55497506/161464582-2e9e4b9b-f69c-4eb7-adc1-e8d04df5269a.mov   
    
