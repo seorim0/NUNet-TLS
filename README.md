@@ -40,6 +40,17 @@ clean_dirs_for_valid = '../Dataset/valid/clean/'
 <p align="center"><img src="https://user-images.githubusercontent.com/55497506/161367052-fa063e0b-9be5-4492-b85c-3ff28e76f6ec.PNG"  width="750" height="800"/></p>   
 <p align="center"><img src="https://user-images.githubusercontent.com/55497506/161367285-d8c93e53-bef4-43ea-9cfd-734e7c0988aa.PNG"  width="750" height="450"/></p>   
 
+
+## Demo
+We randomly select one sample for demonstration.   
+   
+https://user-images.githubusercontent.com/55497506/161464582-2e9e4b9b-f69c-4eb7-adc1-e8d04df5269a.mov   
+   
+https://user-images.githubusercontent.com/55497506/161464601-679dc863-d88f-4d82-8b43-1088c9162ddf.mov   
+   
+https://user-images.githubusercontent.com/55497506/161464628-3b168022-5398-414b-a47c-7dcc4290bc11.mov   
+
+ 
 ## References   
 **U2-Net: Going deeper with nested u-structure for salient object detection**   
 X. Qin, Z. Zhang, C. Huang, M. Dehghan, O. R. Zaiane, and M. Jagersand   
