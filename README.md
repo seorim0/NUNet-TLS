@@ -2,7 +2,7 @@
    
 This is a repo of the paper "Monoaural Speech Enhancement Using a Nested U-Net with Two-Level Skip Connections", which is submitted to INTERSPEECH2022.   
 
-Abstract：Capturing the contextual information in multi-scale is known to be beneficial for improving the performance of DNN-based speech enhancement (SE) models. This paper proposes a new SE model, called NUNet-TLS, having two-level skip connections between the residual U-Blocks nested in each layer of a large U-Net structure. The proposed model also has a causal time-frequency attention (CTFA) at the output of the residual U-Block to boost dynamic representation of the speech context in multi-scale. Even having the two-level skip connections, the proposed model slightly increases the network parameters, but the performance improvement is significant. Experimental results show that the proposed NUNet-TLS has superior performance in various objective evaluation metrics to other state-of-the-art models. The code of our model is available at https://github.com/seorim0/NUNet-TLS.   
+Abstract：Capturing the contextual information in multi-scale is known to be beneficial for improving the performance of DNN-based speech enhancement (SE) models. This paper proposes a new SE model, called NUNet-TLS, having two-level skip connections between the residual U-Blocks nested in each layer of a large U-Net structure. The proposed model also has a causal time-frequency attention (CTFA) at the output of the residual U-Block to boost dynamic representation of the speech context in multi-scale. Even having the two-level skip connections, the proposed model slightly increases the network parameters, but the performance improvement is significant. Experimental results show that the proposed NUNet-TLS has superior performance in various objective evaluation metrics to other state-of-the-art models.     
 
 
 ## Requirements 
@@ -47,6 +47,12 @@ We randomly select one sample for demonstration at 10 dB SNR.
 https://user-images.githubusercontent.com/55497506/161464582-2e9e4b9b-f69c-4eb7-adc1-e8d04df5269a.mov   
    
 https://user-images.githubusercontent.com/55497506/161464601-679dc863-d88f-4d82-8b43-1088c9162ddf.mov   
+   
+https://user-images.githubusercontent.com/55497506/161700183-9edfabd7-0260-4c9c-a331-abfacfe571f6.mov   
+   
+https://user-images.githubusercontent.com/55497506/161700224-b7edf0cc-48a7-4522-a4ba-5f1c53cd60db.mov   
+   
+https://user-images.githubusercontent.com/55497506/161700265-eb05f017-10dc-4e4a-b048-ce76ba025f28.mov   
    
 https://user-images.githubusercontent.com/55497506/161464628-3b168022-5398-414b-a47c-7dcc4290bc11.mov   
 
