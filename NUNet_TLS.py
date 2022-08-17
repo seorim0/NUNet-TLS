@@ -13,9 +13,9 @@ from config import WIN_LEN, HOP_LEN, FFT_LEN
 class causalConv2d(nn.Module):
     def __init__(self, in_ch, out_ch, kernel_size, stride=1, padding=1, dilation=1, groups=1):
         super(causalConv2d, self).__init__()
-        self.conv = nn.Conv2d(in_ch, out_ch, kernel_size=kernel_size, stride=stride, padding=(padding[1], 0),
+        self.conv = nn.Conv2d(in_ch, out_ch, kernel_size=kernel_size, stride=stride, padding=(padding[0], 0),
                               dilation=dilation, groups=groups)
-        self.padding = padding[0]
+        self.padding = padding[1]
 
     def forward(self, x):
         x = F.pad(x, [self.padding, 0, 0, 0])
@@ -185,10 +185,10 @@ class CTFA(nn.Module):
         self.padd = time_seq - 1
 
     def forward(self, x):
-        B, C, T, D = x.size()
+        B, C, D, T = x.size()
 
         # time attention
-        Z_T = x.reshape([B, C*T, D])
+        Z_T = x.permute(0, 1, 3, 2).reshape([B, C*T, D])
         FA = self.time_avg_pool(Z_T)  # [B, C*T, 1]
         FA = FA.reshape([B, C, T])
         FA = self.time_conv1(FA)
@@ -196,20 +196,17 @@ class CTFA(nn.Module):
         FA = self.time_conv2(FA)
         FA = self.time_sigmoid(FA)
         FA = FA.reshape([B, C, T, 1])
-        FA = FA.expand(B, C, T, D)
+        FA = FA.expand(B, C, T, D).permute(0, 1, 3, 2)
 
         # frequency attention
-        x_pad = F.pad(x, [0, 0, self.padd, 0])
-
-        Z_F = x_pad.permute(0, 1, 3, 2)  # [B, C, F, T]
-        Z_F = Z_F.reshape([B, C*D, T+self.padd])
+        x_pad = F.pad(x, [self.padd, 0, 0, 0])
+        Z_F = x_pad.reshape([B, C*D, T+self.padd])
         TA = self.freq_avg_pool(Z_F)  # [B, C*F, T]
         TA = TA.reshape([B, C, D, T])
         TA = self.freq_conv1(TA)
         TA = self.freq_relu(TA)
         TA = self.freq_conv2(TA)
         TA = self.freq_sigmoid(TA)
-        TA = TA.permute(0, 1, 3, 2)  # [B, C, T, F]
 
         # multiply
         TFA = TA * FA
