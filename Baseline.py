@@ -12,9 +12,9 @@ from config import WIN_LEN, HOP_LEN, FFT_LEN
 class causalConv2d(nn.Module):
     def __init__(self, in_ch, out_ch, kernel_size, stride=1, padding=1, dilation=1, groups=1):
         super(causalConv2d, self).__init__()
-        self.conv = nn.Conv2d(in_ch, out_ch, kernel_size=kernel_size, stride=stride, padding=(padding[1], 0),
+        self.conv = nn.Conv2d(in_ch, out_ch, kernel_size=kernel_size, stride=stride, padding=(padding[0], 0),
                               dilation=dilation, groups=groups)
-        self.padding = padding[0]
+        self.padding = padding[1]
 
     def forward(self, x):
         x = F.pad(x, [self.padding, 0, 0, 0])
@@ -457,19 +457,19 @@ class Baseline(nn.Module):
         # decoder stage 1
         out = self.decoder_stage1(torch.cat([out, hx6], dim=1))
 
-        # decoder stage 1
+        # decoder stage 2
         out = self.decoder_stage2(torch.cat([out, hx5], dim=1))
 
-        # decoder stage 1
+        # decoder stage 3
         out = self.decoder_stage3(torch.cat([out, hx4], dim=1))
 
-        # decoder stage 1
+        # decoder stage 4
         out = self.decoder_stage4(torch.cat([out, hx3], dim=1))
 
-        # decoder stage 1
+        # decoder stage 5
         out = self.decoder_stage5(torch.cat([out, hx2], dim=1))
 
-        # decoder stage 1
+        # decoder stage 6
         out = self.decoder_stage6(torch.cat([out, hx1], dim=1))
 
         # output layer
