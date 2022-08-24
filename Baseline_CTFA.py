@@ -188,27 +188,27 @@ class CTFA(nn.Module):
 
         # time attention
         Z_T = x.permute(0, 1, 3, 2).reshape([B, C*T, D])
-        FA = self.time_avg_pool(Z_T)  # [B, C*T, 1]
-        FA = FA.reshape([B, C, T])
-        FA = self.time_conv1(FA)
-        FA = self.time_relu(FA)
-        FA = self.time_conv2(FA)
-        FA = self.time_sigmoid(FA)
-        FA = FA.reshape([B, C, T, 1])
-        FA = FA.expand(B, C, T, D).permute(0, 1, 3, 2)
+        TA = self.time_avg_pool(Z_T)  # [B, C*T, 1]
+        TA = TA.reshape([B, C, T])
+        TA = self.time_conv1(TA)
+        TA = self.time_relu(TA)
+        TA = self.time_conv2(TA)
+        TA = self.time_sigmoid(TA)
+        TA = TA.reshape([B, C, T, 1])
+        TA = TA.expand(B, C, T, D).permute(0, 1, 3, 2)
 
         # frequency attention
         x_pad = F.pad(x, [self.padd, 0, 0, 0])
         Z_F = x_pad.reshape([B, C*D, T+self.padd])
-        TA = self.freq_avg_pool(Z_F)  # [B, C*F, T]
-        TA = TA.reshape([B, C, D, T])
-        TA = self.freq_conv1(TA)
-        TA = self.freq_relu(TA)
-        TA = self.freq_conv2(TA)
-        TA = self.freq_sigmoid(TA)
+        FA = self.freq_avg_pool(Z_F)  # [B, C*F, T]
+        FA = FA.reshape([B, C, D, T])
+        FA = self.freq_conv1(FA)
+        FA = self.freq_relu(FA)
+        FA = self.freq_conv2(FA)
+        FA = self.freq_sigmoid(FA)
 
         # multiply
-        TFA = TA * FA
+        TFA = FA * TA
         out = x * TFA
 
         return out
