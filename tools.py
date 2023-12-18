@@ -61,18 +61,6 @@ def find_pair(noisy_dirs):
 
 def addr2wav(addr):
     wav, fs = soundfile.read(addr)
-    # normalize
-    wav = minMaxNorm(wav)
-    return wav
-
-
-#######################################################################
-#                        Data Normalization                           #
-#######################################################################
-def minMaxNorm(wav, eps=1e-8):
-    max = np.max(abs(wav))
-    min = np.min(abs(wav))
-    wav = (wav - min) / (max - min + eps)
     return wav
 
 
